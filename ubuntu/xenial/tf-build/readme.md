@@ -2,6 +2,8 @@
 
 ## Overview
 
+This docker image builds TensorFlow v2.0 from sources with support for NVIDIA CUDA and TensorRT.
+
 This docker image has been tested on an Ubuntu-18.04 LTS host running:
 - NVIDIA Docker 2
 - NVIDIA Driver 430.26

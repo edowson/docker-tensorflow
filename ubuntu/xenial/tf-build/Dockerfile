@@ -160,7 +160,12 @@ RUN CONDA_BASE_PACKAGE_NAME=`echo $CONDA_BASE_PACKAGE | sed -r 's/\<./\U&/g'` \
     && ARCH=`uname -m` \
     && CONDA_INSTALL_PACKAGE=$CONDA_BASE_PACKAGE_NAME$CONDA_PYTHON_VERSION-$CONDA_VERSION-$OS-$ARCH.sh \
     && echo "installing $CONDA_INSTALL_PACKAGE" \
-    && wget -q --show-progress --progress=bar:force:noscroll https://repo.anaconda.com/archive/$CONDA_INSTALL_PACKAGE -O /tmp/$CONDA_BASE_PACKAGE.sh \
+    && if [ $CONDA_BASE_PACKAGE_NAME = 'Anaconda' ]; then \
+         wget -q --show-progress --progress=bar:force:noscroll https://repo.anaconda.com/archive/$CONDA_INSTALL_PACKAGE -O /tmp/$CONDA_BASE_PACKAGE.sh ;\
+       fi \
+    && if [ $CONDA_BASE_PACKAGE_NAME = 'Miniconda' ]; then \
+         wget -q --show-progress --progress=bar:force:noscroll https://repo.continuum.io/miniconda/$CONDA_INSTALL_PACKAGE -O /tmp/$CONDA_BASE_PACKAGE.sh ;\
+       fi \
     && bash /tmp/$CONDA_BASE_PACKAGE.sh -b -p /opt/$CONDA_BASE_PACKAGE$CONDA_PYTHON_VERSION \
     && rm /tmp/$CONDA_BASE_PACKAGE.sh
 
