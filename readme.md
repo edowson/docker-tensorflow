@@ -17,7 +17,14 @@ cd ubuntu/xenial/tf-build
 ./build.sh
 ```
 
-This will generate a pip package in `/tmp/build` on the host computer.
+This process will generate the pip package in `/home/developer/tensorflow_pkg` inside the docker image.
+
+To copy the pip package to the host:
+```bash
+./run.sh
+```
+
+This will copy the generated pip package from `/home/developer/tensorflow_pkg` within docker image to `/tmp/build` on the host computer.
 
 ---
 

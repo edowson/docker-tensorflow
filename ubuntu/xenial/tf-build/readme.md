@@ -14,12 +14,15 @@ cd ubuntu/xenial/tf-build
 ./build.sh
 ```
 
-This will generate a pip package in `/tmp/build` on the host computer.
+This process will generate the pip package in `/home/developer/tensorflow_pkg` inside the docker image.
 
-To run the docker image
+To copy the pip package to the host:
 ```bash
 ./run.sh
 ```
+
+This will copy the generated pip package from `/home/developer/tensorflow_pkg` within docker image to `/tmp/build` on the host computer.
+
 
 ## Manual Build Process
 
@@ -108,11 +111,8 @@ find . -type f -exec touch -t 201906090600 '{}' \;
 
 # package
 export TENSORFLOW_PACKAGE_NAME=tensorflow-gpu
-export BUILD_OUTPUT=/tmp/build
-./bazel-bin/tensorflow/tools/pip_package/build_pip_package $BUILD_OUTPUT/tensorflow_pkg --project_name $TENSORFLOW_PACKAGE_NAME
-
-# fix folder permissions
-sudo chmod -R 777 $BUILD_OUTPUT
+export BUILD_OUTPUT=$HOME/tensorflow_pkg
+./bazel-bin/tensorflow/tools/pip_package/build_pip_package $BUILD_OUTPUT --project_name $TENSORFLOW_PACKAGE_NAME
 ```
 
 ----

@@ -35,6 +35,7 @@ USER_ID='1000'
 CODE_NAME='xenial'
 TAG="$TENSORFLOW_VERSION-$CUDA_MAJOR_VERSION-$CODE_NAME"
 OPTION=""
+BASH_CMD=${4:-"sudo mkdir -p $BUILD_OUTPUT; sudo chmod -R 777 $BUILD_OUTPUT; cp /home/$USER/tensorflow_pkg/*.whl $BUILD_OUTPUT"}
 
 # setup pulseaudio cookie
 if [ x"$(pax11publish -d)" = x ]; then
@@ -73,7 +74,7 @@ docker run -it \
   -v ${BUILD_OUTPUT}:${BUILD_OUTPUT} \
   --rm \
   --name ${IMAGE}-${TAG} \
-  ${REPOSITORY}:${TAG} bash
+  ${REPOSITORY}:${TAG} bash -c "$BASH_CMD"
 
 xhost -local:root
 

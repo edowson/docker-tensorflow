@@ -2,7 +2,6 @@
 
 BUILD_DATE=$(date -u +'%Y-%m-%d-%H:%M:%S')
 BUILD_VERSION=${1:-"r2.0"}
-BUILD_OUTPUT='/tmp/build'
 ORG='edowson'
 IMAGE='tf-build'
 IMAGE_FEATURE=${2:-"gpu"}
@@ -28,6 +27,7 @@ TF_PYTHON_VERSION=${3:-"3.6"}
 USER='developer'
 USER_ID='1000'
 CODE_NAME='xenial'
+BUILD_OUTPUT="/home/$USER/tensorflow_pkg"
 TAG="$TENSORFLOW_VERSION-$CUDA_MAJOR_VERSION-$CODE_NAME"
 OPTION=""
 
