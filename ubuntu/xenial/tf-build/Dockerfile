@@ -360,7 +360,13 @@ RUN    echo "building tensorflow-$IMAGE_FEATURE-$TENSORFLOW_VERSION" \
 
 # generate tensorflow pip package
 ARG BUILD_OUTPUT
-RUN    echo "generating tensorflow-$IMAGE_FEATURE-$TENSORFLOW_VERSION wheels package to $BUILD_OUTPUT"
+RUN    echo "generating tensorflow-$IMAGE_FEATURE-$TENSORFLOW_VERSION wheels package to $BUILD_OUTPUT" \
+    # source conda shell environment \
+    && . /opt/$CONDA_BASE_PACKAGE$CONDA_PYTHON_VERSION/etc/profile.d/conda.sh \
+    && conda activate $TF_CONDA_ENV \
+    && cd $TENSORFLOW_DIR \
+    && ./bazel-bin/tensorflow/tools/pip_package/build_pip_package $BUILD_OUTPUT/tensorflow_pkg --project_name $TENSORFLOW_PACKAGE_NAME \
+    && sudo chmod -R 777 $BUILD_OUTPUT
 
 # labels
 LABEL org.label-schema.schema-version="1.0"
