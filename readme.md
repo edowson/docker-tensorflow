@@ -1,7 +1,11 @@
 # TensorFlow Docker build images
 
 This repository contains docker images for building TensorFlow v2.0 with NVIDIA CUDA and TensorRT support:
-- [TensorFlow - Build - Ubuntu-16.04](./ubuntu/xenial/tf-build/)
+- [TensorFlow - Build Image - Ubuntu-16.04](./ubuntu/xenial/tf-build/)
+
+Additionally, a set of TensorFlow v2.0 base images have been provided, as a starting point for creating your own docker images:
+- [TensorFlow - Base Image - Ubuntu-16.04](./ubuntu/xenial/tf-base/)
+- [TensorFlow - Development Base Image - Ubuntu-16.04](./ubuntu/xenial/tf-base/)
 
 
 ## Ubuntu Host OS installation
@@ -47,7 +51,7 @@ This will copy the generated pip package from `/home/developer/tensorflow_pkg` w
 
 [How to compile TensorFlow 1.12 on Ubuntu 16.04 using Docker](https://cnvrg.io/how-to-compile-tensorflow-1-12-on-ubuntu-16-04-using-docker/)
 
-[Build TensorFlow-CPU with MKL and Anaconda Python 3.6 using a Docker Container](https://www.pugetsystems.com/labs/hpc/Build-TensorFlow-CPU-with-MKL-and-Anaconda-Python-3-6-using-a-Docker-Container-1133/)
+[Build TensorFlow-CPU with MKL and Anaconda Python 3.6 using a Docker Container - Dr Donald Kinghorn - Puget Systems 20180406](https://www.pugetsystems.com/labs/hpc/Build-TensorFlow-CPU-with-MKL-and-Anaconda-Python-3-6-using-a-Docker-Container-1133/)
 
 [Nvidia GPU: CUDA Compute Capability](https://www.myzhar.com/blog/tutorials/tutorial-nvidia-gpu-cuda-compute-capability/)
 
