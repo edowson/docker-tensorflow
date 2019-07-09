@@ -1,6 +1,6 @@
 # TensorFlow Docker build images
 
-This repository contains docker image files for TensorFlow:
+This repository contains docker images for building TensorFlow v2.0 with NVIDIA CUDA and TensorRT support:
 - [TensorFlow - Build - Ubuntu-16.04](./ubuntu/xenial/tf-build/)
 
 
@@ -18,6 +18,7 @@ cd ubuntu/xenial/tf-build
 ```
 
 This will generate a pip package in `/tmp/build` on the host computer.
+
 ---
 
 ## Issues
