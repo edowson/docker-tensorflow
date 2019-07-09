@@ -1,4 +1,4 @@
-# edowson/tf-build/$IMAGE_FEATURE:$BUILD_VERSION-$CUDA_MAJOR_VERSION-xenial
+# edowson/tf-build/$IMAGE_FEATURE:$TENSORFLOW_VERSION-$CUDA_MAJOR_VERSION-xenial
 
 # build tf-build
 ARG REPOSITORY
@@ -193,9 +193,6 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-# args
-ARG BUILD_VERSION
-
 # install additional libraries
 ARG NCCL2_VERSION
 ARG TENSORRT_VERSION
@@ -297,7 +294,7 @@ RUN    /opt/$CONDA_BASE_PACKAGE$CONDA_PYTHON_VERSION/bin/conda create -n $TF_CON
 ARG TENSORFLOW_VERSION
 ARG TENSORFLOW_DIR=$HOME/tensorflow
 ENV TENSORFLOW_VERSION $TENSORFLOW_VERSION
-ADD --chown=1000:1000 https://api.github.com/repos/tensorflow/tensorflow/git/refs/heads/$TENSORFLOW_VERSION $HOME/.tensorflow_git_version.json
+ADD --chown=1000:1000 https://api.github.com/repos/tensorflow/tensorflow/git/refs/tags/$TENSORFLOW_VERSION $HOME/.tensorflow_git_version.json
 RUN git clone --depth=1 --branch $TENSORFLOW_VERSION https://github.com/tensorflow/tensorflow.git $TENSORFLOW_DIR
 
 # configure tensorflow

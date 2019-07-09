@@ -7,7 +7,7 @@ SCRIPT_DIR=`dirname $0`
 # script variables
 HOST_IP=`hostname -I | awk '{print $1}'`
 DOCKER_DAEMON_IP=`ip -4 -o a | grep docker0 | awk '{print $4}'`
-BUILD_VERSION=${1:-"r2.0"}
+BUILD_VERSION=${1:-"v2.0.0-beta1"}
 BUILD_OUTPUT='/tmp/build'
 ORG='edowson'
 IMAGE='tf-build'

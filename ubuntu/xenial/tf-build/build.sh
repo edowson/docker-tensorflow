@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BUILD_DATE=$(date -u +'%Y-%m-%d-%H:%M:%S')
-BUILD_VERSION=${1:-"r2.0"}
+BUILD_VERSION=${1:-"v2.0.0-beta1"}
 ORG='edowson'
 IMAGE='tf-build'
 IMAGE_FEATURE=${2:-"gpu"}
