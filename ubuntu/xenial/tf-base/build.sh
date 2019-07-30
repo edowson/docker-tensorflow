@@ -10,7 +10,7 @@ CUDA_MAJOR_VERSION='10.1'
 CUDNN_VERSION='7.6.1.34'
 CONDA_PYTHON_VERSION='3'
 CONDA_BASE_PACKAGE='miniconda'
-CONDA_VERSION='4.6.14'
+CONDA_VERSION='4.7.10'
 NCCL2_VERSION='2.4.7'
 TENSORFLOW_VERSION="$BUILD_VERSION"
 TENSORRT_VERSION='5.1.5.0'
@@ -25,8 +25,8 @@ OPTION=""
 
 : '
 Information about available software versions:
-01. anaconda: 2019.03
-02. miniconda: 4.6.14
+01. anaconda: 2019.07
+02. miniconda: 4.7.10
 '
 
 # use tar to dereference the symbolic links from the current directory,
