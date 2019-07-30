@@ -11,7 +11,7 @@ CUDA_MAJOR_VERSION='10.1'
 CUDNN_VERSION='7.6.1.34'
 CONDA_PYTHON_VERSION='3'
 CONDA_BASE_PACKAGE='anaconda'
-CONDA_VERSION='2019.03'
+CONDA_VERSION='2019.07'
 LLVM_VERSION='7'
 NVIDIA_DRIVER_VERSION='430.26'
 NCCL2_VERSION='2.4.7'
@@ -29,8 +29,8 @@ OPTION=""
 
 : '
 Information about available software versions:
-01. anaconda: 2019.03
-02. miniconda: 4.6.14
+01. anaconda: 2019.07
+02. miniconda: 4.7.10
 03. LLVM: 5.0, 6.0, 7, 8.
 '
 
