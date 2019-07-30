@@ -233,10 +233,12 @@ RUN apt-get update \
 RUN    echo "applying fixes for tensorflow build" \
     # libcublas \
     && CUBLAS_VERSION=`apt-cache policy libcublas-dev | grep 'Installed:' | cut -c 14- | sed 's/-[0-9].*//'` \
-    && echo "current libcublas-dev=$CUBLAS_VERSION, creating symlink /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so.$CUDA_MAJOR_VERSION" \
+    && cp /usr/include/cublas* /usr/local/cuda-$CUDA_MAJOR_VERSION/include/ \
     && cp /usr/lib/x86_64-linux-gnu/libcublas.so.$CUBLAS_VERSION /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/ \
-    && ln -s /usr/local/cuda-10.1/lib64/libcublas.so.$CUBLAS_VERSION /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so.$CUDA_MAJOR_VERSION \
-    && ln -s /usr/local/cuda-10.1/lib64/libcublas.so.$CUDA_MAJOR_VERSION /usr/local/cuda-10.1/lib64/libcublas.so
+    && echo "current libcublas-dev=$CUBLAS_VERSION, creating symlink /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so.$CUDA_MAJOR_VERSION" \
+    && ln -s /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so.$CUBLAS_VERSION /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so.$CUDA_MAJOR_VERSION \
+    && ln -s /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so.$CUDA_MAJOR_VERSION /usr/local/cuda-$CUDA_MAJOR_VERSION/lib64/libcublas.so
+
 
 # install bazel
 ARG BAZEL_VERSION
