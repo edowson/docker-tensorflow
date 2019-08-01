@@ -7,7 +7,7 @@ IMAGE='tf-base'
 IMAGE_FEATURE=${2:-"gpu"}
 REPOSITORY="$ORG/$IMAGE/$IMAGE_FEATURE"
 CUDA_MAJOR_VERSION='10.1'
-CUDNN_VERSION='7.6.1.34'
+CUDNN_VERSION='7.6.2.24'
 CONDA_PYTHON_VERSION='3'
 CONDA_BASE_PACKAGE='miniconda'
 CONDA_VERSION='4.7.10'
@@ -27,6 +27,8 @@ OPTION=""
 Information about available software versions:
 01. anaconda: 2019.07
 02. miniconda: 4.7.10
+03. NVIDIA CUDA: 10.1
+04. NVIDIA CUDNN: 7.6.1.34, 7.6.2.24
 '
 
 # use tar to dereference the symbolic links from the current directory,
