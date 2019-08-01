@@ -8,24 +8,35 @@ SCRIPT_DIR=`dirname $0`
 HOST_IP=`hostname -I | awk '{print $1}'`
 DOCKER_DAEMON_IP=`ip -4 -o a | grep docker0 | awk '{print $4}'`
 BUILD_VERSION=${1:-"v2.0.0-beta1"}
+BUILD_OUTPUT=${6:-"/tmp/build"}
 ORG='edowson'
-IMAGE='tf-base'
+IMAGE='tf-build'
 IMAGE_FEATURE='gpu'
 REPOSITORY="$ORG/$IMAGE/$IMAGE_FEATURE"
+BAZEL_VERSION='0.26.0'
 CUDA_MAJOR_VERSION='10.1'
 CUDNN_VERSION='7.6.2.24'
 CONDA_PYTHON_VERSION='3'
 CONDA_BASE_PACKAGE='miniconda'
 CONDA_VERSION='4.7.10'
+LLVM_VERSION='7'
+NVIDIA_DRIVER_VERSION='430.26'
 NCCL2_VERSION='2.4.7'
+VULKAN_SDK_VERSION='1.1.108.0'
 TENSORFLOW_VERSION="$BUILD_VERSION"
 TENSORRT_VERSION='5.1.5.0'
+TF_NEED_MPI=0
+TF_NEED_OPENCL=0
+TF_NEED_ROCM=0
+TF_CUDA_COMPUTE_CAPABILITIES="6.1,7.0"
 TF_PYTHON_VERSION=${3:-"3.6"}
 USER='developer'
 USER_ID='1000'
-CODE_NAME='xenial'
+OS_DISTRO=${4:-"ubuntu"}
+CODE_NAME=${5:-"xenial"}
 TAG="$TENSORFLOW_VERSION-$CUDA_MAJOR_VERSION-$CODE_NAME"
 OPTION=""
+BASH_CMD=${7:-"sudo mkdir -p $BUILD_OUTPUT; sudo chmod -R 777 $BUILD_OUTPUT; cp /home/$USER/tensorflow_pkg/*.whl $BUILD_OUTPUT"}
 
 # setup pulseaudio cookie
 if [ x"$(pax11publish -d)" = x ]; then
@@ -61,13 +72,10 @@ docker run -it \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket:ro \
   -v ${XDG_RUNTIME_DIR}/pulse/native:/run/user/1000/pulse/native \
-  -v ~/mount/backup:/backup \
-  -v ~/mount/data:/data \
-  -v ~/mount/project:/project \
-  -v ~/mount/tool:/tool \
+  -v ${BUILD_OUTPUT}:${BUILD_OUTPUT} \
   --rm \
   --name ${IMAGE}-${TAG} \
-  ${REPOSITORY}:${TAG} bash
+  ${REPOSITORY}:${TAG} bash -c "$BASH_CMD"
 
 xhost -local:root
 
