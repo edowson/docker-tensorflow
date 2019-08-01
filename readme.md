@@ -15,20 +15,15 @@ Setup your Ubuntu Host OS, install NVIDIA docker 2 with configure docker user-na
 
 ## Usage
 
-Build tensorflow pip package using the docker image
+Run the [./build.sh](./build.sh) script located at the root of this repository to build the following docker images:
+- [ubuntu/tf-build](./ubuntu/tf-build/)
+- [ubuntu/tf-base](./ubuntu/tf-base/)
+
 ```bash
-cd ubuntu/tf-build
 ./build.sh
 ```
 
-This process will generate the pip package in `/home/developer/tensorflow_pkg` inside the docker image.
-
-To copy the pip package to the host:
-```bash
-./run.sh
-```
-
-This will copy the generated pip package from `/home/developer/tensorflow_pkg` within docker image to `/tmp/build` on the host computer.
+The [./build.sh](./build.sh) script will also invoke the [ubuntu/tf-build/run.sh](./ubuntu/tf-build/run.sh) script to copy the generated pip package from `/home/developer/tensorflow_pkg` from within the [ubuntu/tf-build](./ubuntu/tf-build/) docker image to `/tmp/build` on the host computer.
 
 ---
 
