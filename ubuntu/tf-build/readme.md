@@ -1,4 +1,4 @@
-# Ubuntu-16.04 LTS TensorFlow Build docker image
+# Ubuntu TensorFlow Build docker image
 
 ## Overview
 

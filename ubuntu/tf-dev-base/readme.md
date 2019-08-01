@@ -1,4 +1,4 @@
-# Ubuntu-16.04 LTS TensorFlow development base docker image
+# Ubuntu TensorFlow development base docker image
 
 ## Overview
 
