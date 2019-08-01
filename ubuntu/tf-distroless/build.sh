@@ -17,7 +17,8 @@ TENSORRT_VERSION='5.1.5.0'
 TF_PYTHON_VERSION=${3:-"3.5"}
 USER='developer'
 USER_ID='1000'
-CODE_NAME='xenial'
+OS_DISTRO=${4:-"ubuntu"}
+CODE_NAME=${5:-"xenial"}
 BUILD_IMAGE='tf-build'
 BUILD_OUTPUT="/home/$USER/tensorflow_pkg"
 TAG="$TENSORFLOW_VERSION-$CUDA_MAJOR_VERSION-$CODE_NAME"
@@ -30,6 +31,13 @@ Information about available software versions:
 03. NVIDIA CUDA: 10.1
 04. NVIDIA CUDNN: 7.6.1.34, 7.6.2.24
 '
+
+# map os code name to os version
+if [ $CODE_NAME = "xenial" ]; then
+  OS_VERSION='16.04';
+elif [ $CODE_NAME = "bionic" ]; then
+  OS_VERSION='18.04';
+fi
 
 # use tar to dereference the symbolic links from the current directory,
 # and then pipe them all to the docker build - command
